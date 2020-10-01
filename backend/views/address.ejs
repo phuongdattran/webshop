@@ -1,0 +1,47 @@
+<%- include('head'); %>
+<%- include('navbar'); %>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Account</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">My Addresses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <div class="contact-box-main">
+        <div class="container">
+            <div class="row">
+                <h2>My Addresses</h2>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <a href="/myaccount/address/add/" class="ml-auto btn hvr-hover m-2">Add new address</a>
+            </div> 
+                <% for(let i=0; i<userAddress.length; i++) {%>
+                <div class="row my-5">
+                    <div class="col-lg-6 col-sm-6 text-center">
+                        <p><span class="font-weight-bold">Address <%= i+1 %></span>:</p> 
+                        <p><%= userAddress[i].address %> </p> 
+                        <p><%= userAddress[i].zip %> <%= userAddress[i].state %> <%= userAddress[i].country %></p>
+                        <p><%= userAddress[i].country %></p>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 text-center">
+                        <a href="/myaccount/address/edit/<%= userAddress[i]._id %>" class="ml-auto btn hvr-hover m-2">Edit</a>
+                        <form action="/api/user/address/<%= userAddress[i]._id %>?_method=DELETE" method="POST">
+                            <button class="btn hvr-hover" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %> 
+        </div>
+    </div>
+
+<%- include('footer'); %>

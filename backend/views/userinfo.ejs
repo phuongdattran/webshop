@@ -1,0 +1,41 @@
+<%- include('head'); %>
+<%- include('navbar'); %>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Account</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">User Info</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <div class="contact-box-main">
+        <div class="container">
+            <div class="row">
+                <h2>Account details</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 text-center">
+                    <p><span class="font-weight-bold">Firstname</span>: <%= userInfo.firstname %></p>
+                    <p><span class="font-weight-bold">Lastname</span>: <%= userInfo.lastname %></p>
+                    <p><span class="font-weight-bold">Email</span>: <%= userInfo.email %></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 text-center">
+                    <a href="/myaccount/edituserinfo/" class="ml-auto btn hvr-hover">Edit your info</a>
+                </div>
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <a href="/myaccount/changepassword/" class="ml-auto btn hvr-hover m-5">Change your password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('footer'); %>
