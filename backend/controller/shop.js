@@ -1,35 +1,50 @@
-const express = require('express');
-const Product = require('../model/product');
+const express = require("express");
+const Product = require("../model/product");
 
 exports.getAllProduct = (req, res, next) => {
-    Product.find()
-    .then(product => res.status(200).json(product))
-    .catch(error => res.status(400).json({error}));
-    };
+  Product.find()
+    .then((product) => res.status(200).json(product))
+    .catch((error) => res.status(400).json({ error }));
+};
 
 exports.getOneProduct = (req, res, next) => {
-    Product.findOne({_id:req.params.id})
-    .then(product => res.status(200).json(product))
-    .catch(error => res.status(404).json({error}));
+  Product.findOne({ _id: req.params.id })
+    .then((product) => res.status(200).json(product))
+    .catch((error) => res.status(404).json({ error }));
 };
 
 exports.createProduct = async (req, res, next) => {
-    const product = new Product({...req.body});
-    product.save()
-      .then(() => res.status(201).json({ message: 'New product in the shop'}))
-      .catch(error => res.status(400).json({ error }));
+  const product = new Product({ ...req.body });
+  product
+    .save()
+    .then(() => res.status(201).json({ message: "New product in the shop" }))
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.updateProduct = (req, res, next) => {
-    Product.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
+  Product.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
     .then(() => {
-        res.status(200).redirect('/shop/');
+      res.status(200).redirect("/shop/");
     })
-    .catch(error => res.status(400).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.deleteProduct = (req, res, next) => {
-    Product.deleteOne({_id: req.params.id})
-    .then(()=> res.status(200).json({message: 'The product has been deleted'}))
-    .catch(error => res.status(400).json({error}));
+  Product.deleteOne({ _id: req.params.id })
+    .then(() =>
+      res.status(200).json({ message: "The product has been deleted" })
+    )
+    .catch((error) => res.status(400).json({ error }));
+};
+
+////Search
+exports.search = (req, res, next) => {
+  Product.find({
+    $or: [
+      { name: { $regex: req.params.search, $options: "i" } },
+      { type: { $regex: req.params.search, $options: "i" } },
+    ],
+  })
+    .then((product) => res.status(200).json(product))
+    .catch((error) => res.status(400).json({ error }));
 };
