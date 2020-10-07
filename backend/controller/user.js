@@ -75,7 +75,7 @@ exports.login = (req, res, next) => {
                 {expiresIn: '24h'}
                 );
             res.cookie('token', token);
-            res.status(200).redirect('/home/');
+            res.status(200).redirect('/home');
         })
         .catch(error => res.status(500).json({error}));
     })

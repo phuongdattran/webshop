@@ -3,7 +3,10 @@ const jwt = require('jsonwebtoken');
 global.fetch = require("node-fetch");
 
 exports.myAccountPage = (req, res, next) => {
-    res.render('myaccount.ejs');
+    const token = req.cookies['token'];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+    res.render('myaccount.ejs', {userId});
 };
 
 exports.userInfoPage = async (req, res, next) => {
@@ -116,5 +119,47 @@ exports.editAddressPage = async (req, res, next) => {
         res.render('editaddress.ejs', {addressInfo});
     } catch {
         res.status(401).json({error: 'Unauthenticated Request'});
+    }
+};
+
+exports.orderPage = async (req, res, next) => {
+    try {
+        const token = req.cookies['token'];
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+        const userId = decodedToken.userId;
+        let url = `http://localhost:3000/api/order/all/${userId}`;
+        
+        myInit = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        let orderInfo = await fetch(url, myInit);
+        orderInfo = await orderInfo.json();
+
+        res.render('order.ejs', {orderInfo});
+    } catch {
+        res.status(401).json({error: 'Unauthenticated Request hihi'});
+    }
+};
+
+exports.orderDetailsPage = async (req, res, next) => {
+    try {
+        const token = req.cookies['token'];
+        let url = `http://localhost:3000/api/order/${req.params.id}`;
+        console.log(url);
+        myInit = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        let orderDetails = await fetch(url, myInit);
+        orderDetails = await orderDetails.json();
+
+        res.render('orderdetails.ejs', {orderDetails});
+    } catch {
+        res.status(401).json({error: 'Unauthenticated Request lol'});
     }
 };
