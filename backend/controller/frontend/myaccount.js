@@ -78,9 +78,9 @@ exports.changePasswordPage = async (req, res, next) => {
 exports.addressPage = async (req, res, next) => {
   try {
     const token = req.cookies["token"];
-    //const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    //const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/user/address/list`;
+    const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+    const userId = decodedToken.userId;
+    let url = `http://localhost:3000/api/user/address/list/${userId}`;
 
     myInit = {
       headers: {
@@ -90,7 +90,6 @@ exports.addressPage = async (req, res, next) => {
 
     let userAddress = await fetch(url, myInit);
     userAddress = await userAddress.json();
-
     res.render("address.ejs", { userAddress });
   } catch {
     res.status(401).json({ error: "Unauthenticated Request" });
@@ -176,11 +175,7 @@ exports.orderDetailsPage = async (req, res, next) => {
       return product;
     });
 
-    /*orderAPI.date = orderDetails.date;
-    orderAPI._id = orderDetails._id;*/
     orderDetails = [...orderAPI, { ...orderDetails }];
-
-    console.log(orderDetails);
 
     res.render("orderdetails.ejs", { orderDetails });
   } catch {

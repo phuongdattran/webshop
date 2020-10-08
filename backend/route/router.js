@@ -15,14 +15,22 @@ router.get("/myaccount/", auth, myAccountCtrl.myAccountPage);
 
 router.get("/myaccount/userinfo/", auth, myAccountCtrl.userInfoPage);
 router.get("/myaccount/edituserinfo/", auth, myAccountCtrl.editUserInfoPage);
-router.get("/myaccount/changepassword/", auth, myAccountCtrl.changePasswordPage);
+router.get(
+  "/myaccount/changepassword/",
+  auth,
+  myAccountCtrl.changePasswordPage
+);
 
-router.get("/myaccount/address/", auth, myAccountCtrl.addressPage);
-router.get("/myaccount/address/add/", auth, myAccountCtrl.addAddressPage);
+router.get("/myaccount/address/:id", auth, myAccountCtrl.addressPage);
+router.get("/myaccount/address/add/add", auth, myAccountCtrl.addAddressPage);
 router.get("/myaccount/address/edit/:id", auth, myAccountCtrl.editAddressPage);
 
 router.get("/myaccount/order/:userId", auth, myAccountCtrl.orderPage);
-router.get("/myaccount/order/details/:id", auth, myAccountCtrl.orderDetailsPage);
+router.get(
+  "/myaccount/order/details/:id",
+  auth,
+  myAccountCtrl.orderDetailsPage
+);
 
 router.get("/signup/", signInCtrl.signUpPage);
 router.get("/signin/", signInCtrl.signInPage);
