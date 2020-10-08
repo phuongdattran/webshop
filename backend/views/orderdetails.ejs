@@ -1,81 +1,108 @@
-<%- include('head'); %>
-<%- include('navbar'); %>
+<%- include('head'); %> <%- include('navbar'); %>
 
-    <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>My Account</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">My Orders</li>
-                    </ul>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>My Account</h2>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Shop</a></li>
+          <li class="breadcrumb-item active">My Orders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End All Title Box -->
+
+<div class="contact-box-main">
+  <div class="container">
+    <div class="row">
+      <h2>Order# <%= orderDetails[1]._id %></h2>
+    </div>
+    <div class="col-lg-6 col-sm-6"></div>
+
+    <div class="row my-5">
+      <div class="col-lg-6 col-sm-6">
+        <p>
+          <span class="font-weight-bold">Order#</span>:
+          <span id="orderNbr"><%= orderDetails[orderDetails.length-1]._id %></span>
+        </p>
+        <p>
+          <span class="font-weight-bold">Date</span>: <%=
+          orderDetails[orderDetails.length-1].date.split("T")[0] %> <%= orderDetails[orderDetails.length-1].date.substr(11,8)
+          %>
+        </p>
+        <div id="orderDetails">
+            <% for(let i = 0; i<orderDetails.length-1;i++) { %>
+            <div class="media mb-2 border-bottom">
+                <div class="media-body"> 
+                    <a href="detail.html"> <%= orderDetails[i].name %></a>
+                    <div class="small text-muted">Price: <%= orderDetails[i].price/100 %>
+                        <span class="mx-2">|</span> Qty: <%= orderDetails[i].number %>
+                        <span class="mx-2">|</span> Subtotal: 
+                        <%= ((orderDetails[i].price / 100) *orderDetails[i].number).toFixed(2) %>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- End All Title Box -->
+            <% } %>
 
-    <div class="contact-box-main">
-        <div class="container">
-            <div class="row">
-                <h2>Order# <%= orderDetails._id %></h2>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-            </div> 
-             
-                <div class="row my-5">
-                    <div class="col-lg-6 col-sm-6 ">
-                        <p><span class="font-weight-bold">Order#</span>: <span id="orderNbr"><%= orderDetails._id %></span></p>
-                        <p><span class="font-weight-bold">Date</span>: <%= orderDetails.date.split("T")[0] %> <%= orderDetails.date.substr(11,8) %></p>
-                        <div id="orderDetails"><%= orderDetails.order%></div> 
-                    </div>
-                    <div class="col-lg-6 col-sm-6 text-center">
-                        <p><span class="font-weight-bold">Payment method</span>: <span id="orderNbr"><%= orderDetails.paymentMethod %></span></p>
-                        <p><span class="font-weight-bold">Shipping method</span>: <span id="orderNbr"><%= orderDetails.shippingMethod %></span></p>
-                        <p><span class="font-weight-bold">Address</span></p>
-                        <p><%= orderDetails.address %></p>
-                        <p><%= orderDetails.address2 %></p>
-                        <p><%= orderDetails.zip %> <%= orderDetails.state %></p>
-                        <p><%= orderDetails.country %></p>
-                    </div>
-                </div>
-               
-                <div class="d-flex">
-                    <div class="ml-auto font-weight-bold">Total</div>
-                </div>
-                <hr class="my-1">
-                <div class="d-flex">
-                    <h4>Sub Total</h4>
-                    <div class="ml-auto font-weight-bold" id="totalPrice"> $ 440 </div>
-                </div>
-                <div class="d-flex">
-                    <h4>Discount</h4>
-                    <div class="ml-auto font-weight-bold"> $ 0 </div>
-                </div>
-                <hr class="my-1">
-                <div class="d-flex">
-                    <h4>Coupon Discount</h4>
-                    <div class="ml-auto font-weight-bold"> $ 0 </div>
-                </div>
-                <div class="d-flex">
-                    <h4>Tax</h4>
-                    <div class="ml-auto font-weight-bold" id="taxPrice"> $ 2 </div>
-                </div>
-                <div class="d-flex">
-                    <h4>Shipping Cost</h4>
-                    <div class="ml-auto font-weight-bold"> Free </div>
-                </div>
-                <hr>
-                <div class="d-flex gr-total">
-                    <h5>Grand Total</h5>
-                    <div class="ml-auto h5" id="grandTotalPrice"> $ 388 </div>
-                </div>
-                <hr>
-              
-              
         </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 text-center">
+        <p>
+          <span class="font-weight-bold">Payment method</span>:
+          <span id="orderNbr"><%= orderDetails[orderDetails.length-1].paymentMethod %></span>
+        </p>
+        <p>
+          <span class="font-weight-bold">Shipping method</span>:
+          <span id="orderNbr"><%= orderDetails[orderDetails.length-1].shippingMethod %></span>
+        </p>
+        <p><span class="font-weight-bold">Address</span></p>
+        <p><%= orderDetails[orderDetails.length-1].address %></p>
+        <p><%= orderDetails[orderDetails.length-1].address2 %></p>
+        <p><%= orderDetails[orderDetails.length-1].zip %> <%= orderDetails.state %></p>
+        <p><%= orderDetails[orderDetails.length-1].country %></p>
+      </div>
     </div>
-    <script src="/js/orderdetails.js"></script>
+
+    <div class="d-flex">
+      <div class="ml-auto font-weight-bold">Total</div>
+    </div>
+    <hr class="my-1" />
+    <div class="d-flex">
+      <h4>Sub Total</h4>
+      <% let price=0;
+      for(let j=0; j<orderDetails.length-1; j++) {
+        price += (orderDetails[j].price*orderDetails[j].number)/100;
+      } %>
+      <div class="ml-auto font-weight-bold" id="totalPrice">$ <%= price.toFixed(2) %></div>
+    </div>
+    <div class="d-flex">
+      <h4>Discount</h4>
+      <div class="ml-auto font-weight-bold">$ 0</div>
+    </div>
+    <hr class="my-1" />
+    <div class="d-flex">
+      <h4>Coupon Discount</h4>
+      <div class="ml-auto font-weight-bold">$ 0</div>
+    </div>
+    <div class="d-flex">
+      <h4>Tax</h4>
+      <div class="ml-auto font-weight-bold" id="taxPrice">$ <%= (price*0.21).toFixed(2) %></div>
+    </div>
+    <div class="d-flex">
+      <h4>Shipping Cost</h4>
+      <div class="ml-auto font-weight-bold">Free</div>
+    </div>
+    <hr />
+    <div class="d-flex gr-total">
+      <h5>Grand Total</h5>
+      <div class="ml-auto h5" id="grandTotalPrice">$ <%= (price*1.21).toFixed(2) %></div>
+    </div>
+    <hr />
+  </div>
+</div>
+
 <%- include('footer'); %>
