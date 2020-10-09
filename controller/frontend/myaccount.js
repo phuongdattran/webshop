@@ -14,7 +14,7 @@ exports.userInfoPage = async (req, res, next) => {
     const token = req.cookies["token"];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/user/${userId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/user/${userId}`;
 
     myInit = {
       headers: {
@@ -36,7 +36,7 @@ exports.editUserInfoPage = async (req, res, next) => {
     const token = req.cookies["token"];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/user/${userId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/user/${userId}`;
 
     myInit = {
       headers: {
@@ -58,7 +58,7 @@ exports.changePasswordPage = async (req, res, next) => {
     const token = req.cookies["token"];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/user/${userId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/user/${userId}`;
 
     myInit = {
       headers: {
@@ -80,7 +80,7 @@ exports.addressPage = async (req, res, next) => {
     const token = req.cookies["token"];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/user/address/list/${userId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/user/address/list/${userId}`;
 
     myInit = {
       headers: {
@@ -103,7 +103,7 @@ exports.addAddressPage = async (req, res, next) => {
 exports.editAddressPage = async (req, res, next) => {
   try {
     let addressId = req.params.id;
-    let url = `http://localhost:3000/api/user/address/${addressId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/user/address/${addressId}`;
     const token = req.cookies["token"];
 
     myInit = {
@@ -126,7 +126,7 @@ exports.orderPage = async (req, res, next) => {
     const token = req.cookies["token"];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
-    let url = `http://localhost:3000/api/order/all/${userId}`;
+    let url = `https://webshop-exo.herokuapp.com/api/order/all/${userId}`;
 
     myInit = {
       headers: {
@@ -146,7 +146,7 @@ exports.orderPage = async (req, res, next) => {
 exports.orderDetailsPage = async (req, res, next) => {
   try {
     const token = req.cookies["token"];
-    let url = `http://localhost:3000/api/order/${req.params.id}`;
+    let url = `https://webshop-exo.herokuapp.com/api/order/${req.params.id}`;
     myInit = {
       headers: {
         Authorization: "Bearer " + token,
@@ -156,7 +156,7 @@ exports.orderDetailsPage = async (req, res, next) => {
     let orderDetails = await fetch(url, myInit);
     orderDetails = await orderDetails.json();
 
-    let urlProduct = `http://localhost:3000/api/shop/`;
+    let urlProduct = `https://webshop-exo.herokuapp.com/api/shop/`;
 
     let productList = await fetch(urlProduct);
     productList = await productList.json();

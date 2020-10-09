@@ -4,7 +4,7 @@ function getCookieValue(a) {
 }
 
 async function displayOrderDetails() {
-  let url = `http://localhost:3000/api/shop/`;
+  let url = `https://webshop-exo.herokuapp.com/api/shop/`;
 
   let productList = await fetch(url);
   productList = await productList.json();
