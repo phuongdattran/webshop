@@ -1,58 +1,76 @@
-<%- include('head'); %>
-<%- include('navbar'); %>
+<%- include('head'); %> <%- include('navbar'); %>
 
-   <!-- Start All Title Box -->
-   <div class="all-title-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Sign In</h2>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Sign In</li>
-                </ul>
-            </div>
-        </div>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Sign In</h2>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Sign In</li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 <!-- End All Title Box -->
 
 <!-- Start Contact Us  -->
 <div class="contact-box-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                <div class="contact-form-right">
-                    <h2>Sign In</h2>
-                    <form action="http://localhost:3000/api/user/signin" method="POST">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="text" id="email" class="form-control" name="email" required data-error="Please enter your email">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" required data-error="Please enter your password">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="submit-button text-center">
-                                    <button class="btn hvr-hover" id="submit" type="submit">Sign In</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <div class="contact-form-right">
+          <h2>Sign In</h2>
+          <form
+            action="https://webshop-exo.herokuapp.com/api/user/signin"
+            method="POST"
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="text"
+                    id="email"
+                    class="form-control"
+                    name="email"
+                    required
+                    data-error="Please enter your email"
+                  />
+                  <div class="help-block with-errors"></div>
                 </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required
+                    data-error="Please enter your password"
+                  />
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="submit-button text-center">
+                  <button class="btn hvr-hover" id="submit" type="submit">
+                    Sign In
+                  </button>
+                  <div id="msgSubmit" class="h3 text-center hidden"></div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
             </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- End Cart -->
 
